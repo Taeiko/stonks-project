@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Stock Details</h1>
+<p>Stock name: {{stock.name}}</p>
+<p>Amount purchased: {{stock.amount}}</p>
+<p>Purchase date: {{stock.purchase_date}}</p>
+<p>Purchase price: {{stock.purchase_price}}</p>
+<p>Current price: {{stock.current_price}}</p>
+{% endblock  %}

@@ -4,6 +4,6 @@
 <form method='post'>
     {% csrf_token %}
     {{form.as_p}}
-    {% comment %} <button type = 'submit'>{{from.instance | yesno: 'Update, Create'}}</button> {% endcomment %}
+    <button type = 'submit'>create</button>
 </form>
 {% endblock %}

@@ -6,7 +6,7 @@ def welcome(request):
     return render(request, 'welcome.html')
 
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from .models import Stock
 from .forms import StockForm
 
@@ -14,8 +14,15 @@ class StockCreateView(CreateView):
     model = Stock
     form_class = StockForm
     template_name = 'stocks/stock-form.html'
+    success_url = reverse_lazy('stock_list')
 
 class StockListView(ListView):
     model = Stock
     template_name = 'stocks/stock-list.html'
-    context_object_name= 'stock'
+    context_object_name= 'stocks'
+
+
+class StockDetailView(DetailView):
+    model = Stock
+    template_name = 'stocks/stock-detail.html'
+    context_object_name = 'stock'
