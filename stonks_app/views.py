@@ -4,3 +4,13 @@ from django.shortcuts import render
 # these are the pages that get displayed when the user types the url
 def welcome(request):
     return render(request, 'welcome.html')
+
+from django.urls import reverse_lazy, reverse
+from django.views.generic import CreateView
+from .models import Stock
+from .forms import StockForm
+
+class StockCreateView(CreateView):
+    model = Stock
+    form_class = StockForm
+    template_name = 'stocks/stock-form.html'
