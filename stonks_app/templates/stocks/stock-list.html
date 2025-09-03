@@ -5,7 +5,7 @@
     {%for stock in stocks%}
         <li>
 
-            <a href="{%url 'details' stock.id%}">{{stock.name}}</a>
+            <a href="{%url 'stock_details' stock.id%}">{{stock.name}}</a>
         </li>
     {%endfor%}
 {% endblock %} 

@@ -34,4 +34,10 @@ class StockUpdateView(UpdateView):
     template_name = 'stocks/stock-form.html'
     
     def get_success_url(self):
-        return reverse("details", kwargs={"pk": self.object.pk})
+        return reverse("stock_details", kwargs={"pk": self.object.pk})
+
+
+class StockdeleteView(DeleteView):
+    model = Stock
+    template_name = 'stocks/stock_confirm_delete.html'
+    success_url = reverse_lazy("stock_list")
