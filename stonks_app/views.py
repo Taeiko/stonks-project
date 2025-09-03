@@ -41,3 +41,19 @@ class StockdeleteView(DeleteView):
     model = Stock
     template_name = 'stocks/stock_confirm_delete.html'
     success_url = reverse_lazy("stock_list")
+
+
+
+
+# the stuff for login and signup and whatever 
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+class SignUpView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    success_url = reverse_lazy ("login")
+    template_name = 'registration/sign-up.html'
+    
+    def get_queryset(self):
+        return super().get_queryset()
