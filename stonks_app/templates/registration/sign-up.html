@@ -6,7 +6,16 @@
 
     <form method="post">
         {% csrf_token %}
-        {{form.as_p}}
+        {% comment %} {{form.as_p}} {% endcomment %}
+
+        {% for field in form %}
+            {{field.label_tag}}
+            {{field}}
+            {% for e in field.errors%} 
+                {{e}}
+            {% endfor %}
+
+        {% endfor %}
         <button>Sign up</button>
     </form>
 {% endblock  %}

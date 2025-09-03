@@ -10,8 +10,11 @@
 </head>
 <body>
     <nav>
-    <a href="{%url 'stock_create'%}">List a stock</a>
+        {% if user.is_authenticated %}
+            <a href="{%url 'stock_create'%}">List a stock</a>
     <a href="{%url 'stock_list'%}">Your Stock Portfolio</a>
+
+        {% endif %}
     </nav>
     {% block content %}{% endblock content %}
 </body>
