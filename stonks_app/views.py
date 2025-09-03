@@ -24,5 +24,14 @@ class StockListView(ListView):
 
 class StockDetailView(DetailView):
     model = Stock
-    template_name = 'stocks/stock-detail.html'
+    template_name = 'stocks/stock-details.html'
     context_object_name = 'stock'
+
+
+class StockUpdateView(UpdateView):
+    model = Stock
+    form_class = StockForm
+    template_name = 'stocks/stock-form.html'
+    
+    def get_success_url(self):
+        return reverse("details", kwargs={"pk": self.object.pk})

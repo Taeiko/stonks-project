@@ -6,4 +6,6 @@
 <p>Purchase date: {{stock.purchase_date}}</p>
 <p>Purchase price: {{stock.purchase_price}}</p>
 <p>Current price: {{stock.current_price}}</p>
+<br>
+<a href="{%url 'stock_update' stock.pk%}">Edit </a> |
 {% endblock  %}
