@@ -1,21 +1,56 @@
 {%load static%}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-</head>
-<body>
-    <nav>
-        {% if user.is_authenticated %}
-            <a href="{%url 'stock_create'%}">List a stock</a>
-    <a href="{%url 'stock_list'%}">Your Stock Portfolio</a>
-
-        {% endif %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Welcome</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example m-0 border-0">
+    <!-- Example Code Start-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    {% if user.is_authenticated %}
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navigation</a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarNavDropdown" style="">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'stock_list'%}">Your Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'stock_list'%}">List a stock</a>
+            </li>
+          </div>
+        </div>
+        {%endif%}
     </nav>
     {% block content %}{% endblock content %}
-</body>
+    <!-- Example Code End -->
+  </body>
 </html>
+
+
+
+
+
+
+
+{% comment %} just storing my working code safely here because bootstrap is annoying as shit.
+    <nav>
+        {% if user.is_authenticated %}
+        Welcome, {{user.username}} |
+            <a href="{%url 'stock_create'%}">List a stock</a>
+            <a href="{%url 'stock_list'%}">Your Stock Portfolio</a>
+            <form action="/auth/logout/" method = 'post'>
+                {% csrf_token %}
+                <button>Logout</button>
+            </form>
+        {% endif %}
+    </nav>
+    {% block content %}{% endblock content %} {% endcomment %}
