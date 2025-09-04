@@ -128,4 +128,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = "login"
-LOGIN_REDIRECT_URL = "stock_list"       # after successful login
+LOGIN_REDIRECT_URL = "author_list"       # after successful login
