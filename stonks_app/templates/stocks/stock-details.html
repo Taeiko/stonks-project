@@ -1,12 +1,30 @@
-{% extends "base.html" %}
+{%load static%}
+
+{% block head %}
+<link href='{%static 'css/portfolio.css'%}' rel="stylesheet">
+{% endblock %}
+
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% block content %}
-<h1>Stock Details</h1>
-<p>Stock name: {{stock.name}}</p>
-<p>Amount purchased: {{stock.amount}}</p>
-<p>Purchase date: {{stock.purchase_date}}</p>
-<p>Purchase price: {{stock.purchase_price}}</p>
-<p>Current price: {{stock.current_price}}</p>
-<br>
+<h1 class='title'>Stock Details</h1>
+    <div class='table-container'>
+        <table class = 'ugly-table'>
+            <tr>
+                <th>Stock name</th>
+                <th>Amount owned</th>
+                <th>Purchase date</th>
+                <th>Purchase price</th>
+                <th>Current price</th>
+            </tr>
+            <tr>
+                <td><a href="{%url 'stock_details' stock.id%}">{{stock.name}}</a></td>
+                    <td><a href="{%url 'stock_details' stock.id%}">{{stock.amount}}</a></td>
+                <td><a href="{%url 'stock_details' stock.id%}">{{stock.purchase_date}}</a></td>
+                    <td><a href="{%url 'stock_details' stock.id%}">${{stock.purchase_price}}</a></td>
+                <td><a href="{%url 'stock_details' stock.id%}">${{stock.current_price}}</a></td>
+            </tr>
+        </table>
+    </div>
 <a href="{%url 'stock_update' stock.pk%}">Edit </a> |
 <form action="{%url 'stock_delete' stock.pk%}" method='post'>
     {%csrf_token%}
