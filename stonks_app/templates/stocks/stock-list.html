@@ -9,7 +9,7 @@
 {% block content %}
     <h1 class='title'>Your Stock Portfolio</h1>
     <div class='table-container'>
-        <table class = 'ugly'>
+        <table class = 'ugly-table'>
             <tr>
                 <th>Stock name</th>
                 <th>Amount owned</th>
@@ -22,8 +22,8 @@
                 <td><a href="{%url 'stock_details' stock.id%}">{{stock.name}}</a></td>
                     <td><a href="{%url 'stock_details' stock.id%}">{{stock.amount}}</a></td>
                 <td><a href="{%url 'stock_details' stock.id%}">{{stock.purchase_date}}</a></td>
-                    <td><a href="{%url 'stock_details' stock.id%}">{{stock.purchase_price}}</a></td>
-                <td><a href="{%url 'stock_details' stock.id%}">{{stock.current_price}}</a></td>
+                    <td><a href="{%url 'stock_details' stock.id%}">${{stock.purchase_price}}</a></td>
+                <td><a href="{%url 'stock_details' stock.id%}">${{stock.current_price}}</a></td>
             </tr>
         </table>
     </div>
