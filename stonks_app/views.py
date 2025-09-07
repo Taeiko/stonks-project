@@ -47,10 +47,18 @@ class StockdeleteView(DeleteView):
 
 # the stuff for login and signup and whatever 
 from .models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
+
 
 class SignUpView(CreateView):
     model = User
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = 'registration/sign-up.html'
+
+class SignInView(LoginView):
+    model = User
+    template_name = 'registration/login.html'
+    authentication_form = AuthenticationForm
+    success_url = reverse_lazy("welcome")
