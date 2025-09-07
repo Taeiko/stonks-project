@@ -1,11 +1,61 @@
-{% extends "base.html" %}
+{% comment %} somehow removing the base extension works. what the fuck. {% endcomment %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{%load static%}
 
+{% block head %}
+<link href='{%static 'css/portfolio.css'%}' rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+    <h1 class='title'>Your Stock Portfolio</h1>
+    <div class='table-container'>
+        <table class = 'ugly'>
+            <tr>
+                <th>Stock name</th>
+                <th>Amount owned</th>
+                <th>Purchase date</th>
+                <th>Purchase price</th>
+                <th>Current price</th>
+            </tr>
+            {%for stock in stocks%}
+            <tr>
+                <td><a href="{%url 'stock_details' stock.id%}">{{stock.name}}</a></td>
+                    <td><a href="{%url 'stock_details' stock.id%}">{{stock.amount}}</a></td>
+                <td><a href="{%url 'stock_details' stock.id%}">{{stock.purchase_date}}</a></td>
+                    <td><a href="{%url 'stock_details' stock.id%}">{{stock.purchase_price}}</a></td>
+                <td><a href="{%url 'stock_details' stock.id%}">{{stock.current_price}}</a></td>
+            </tr>
+        </table>
+    </div>
+    {%endfor%}
+{% endblock %} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} safely keeping my working code here in ccase shit hits the fan (i hope not).
+
+list.html
+{%load static%}
+
+{% block head %}
+<link href='{%static 'css/portfolio.css'%}' rel="stylesheet">
+
+{% endblock %}
 {% block content %}
     <h1>Your Stock Portfolio</h1>
     {%for stock in stocks%}
-        <li>
-
-            <a href="{%url 'stock_details' stock.id%}">{{stock.name}}</a>
-        </li>
+        <tabl>
+            <a href="{%url 'stock_details' stock.id%}">{{stock.name}}, {{stock.amount}}</a>
+        </tabl>
     {%endfor%}
-{% endblock %} 
+{% endblock %}  {% endcomment %}
