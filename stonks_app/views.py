@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from django.conf import settings
+import requests
+import finnhub
+import os
 
 # Create your views here.
 # these are the pages that get displayed when the user types the url
@@ -23,7 +27,7 @@ class StockListView(ListView):
 
 def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    api_key = os.getenv()
+    api_key = os.getenv(settings.FINNHUB_API_KEY)
     
     stocks_with_prices = []
     for stock in context['stocks']:
@@ -34,7 +38,6 @@ def get_context_data(self, **kwargs):
     context['stocks'] = stocks_with_prices
     return context
 
-
 class StockDetailView(DetailView):
     model = Stock
     template_name = 'stocks/stock-details.html'
@@ -42,9 +45,13 @@ class StockDetailView(DetailView):
     
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
-        api_key = os.getenv()
+        api_key = settings.FINNHUB_API_KEY
+        
         stock = context['stock']
-        stock.current_price = fetch_stock_price(stock.name.upper(), api_key)
+        print('name',stock.ticker.upper())
+        stock.current_price = (fetch_stock_price(stock.ticker.upper(), api_key))
+        print(stock.current_price)
+        context['current_price'] = stock.current_price
         return context
 
 class StockUpdateView(UpdateView):
@@ -83,13 +90,14 @@ class SignInView(LoginView):
     success_url = reverse_lazy("welcome")
 
 
-import requests
-import finnhub
-import os
+
 # this will get the current price of the stock
 def fetch_stock_price(symbol,api_key):
-    url = f'https://finnhub.io/v1/quote?symbol={symbol}&token={api_key}'
+    url = f'https://finnhub.io/api/v1/quote?symbol={symbol}&token={api_key}'
+    print(url)
     response = requests.get(url)
+    print(response.json())
     response.raise_for_status()
     data = response.json()
+    print(data)
     return data['c']

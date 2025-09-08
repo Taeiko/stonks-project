@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 class StockForm(forms.ModelForm):
     class Meta:
         model = Stock 
-        fields = ['name', 'amount', 'purchase_date', 'purchase_price','current_price' ]
+        fields = ['name','ticker','amount', 'purchase_date', 'purchase_price','current_price' ]
 
         widgets = {
             'purchase_date': forms.DateInput(attrs={'type':'date'})

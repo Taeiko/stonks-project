@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser
 
 class Stock(models.Model):
     name= models.CharField(max_length=80)
+    ticker = models.CharField(max_length=10)
     amount = models.BigIntegerField()
     purchase_date = models.DateField()
     purchase_price = models.DecimalField(decimal_places=2, max_digits=10)
