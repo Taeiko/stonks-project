@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'stock_proftfolio_tracker_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'investments',  # Name of your PostgreSQL database
+        'NAME': os.getenv('investments'),  # Name of your PostgreSQL database
         'USER': 'neondb_owner',
         'PASSWORD': 'npg_4MXcoOCi6aJZ',
         'HOST': 'ep-broad-sky-ad4g691j-pooler.c-2.us-east-1.aws.neon.tech',  
@@ -119,3 +119,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "stock_list"       # after successful login
+
+
+
+
+import os 
+from dotenv import load_dotenv
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")

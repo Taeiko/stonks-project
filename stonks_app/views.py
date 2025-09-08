@@ -21,12 +21,31 @@ class StockListView(ListView):
     template_name = 'stocks/stock-list.html'
     context_object_name= 'stocks'
 
+def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    api_key = os.getenv()
+    
+    stocks_with_prices = []
+    for stock in context['stocks']:
+        current_price = fetch_stock_price(stock.name.upper(), api_key)
+        stock.current_price = current_price
+        stocks_with_prices.append(stock)
+    
+    context['stocks'] = stocks_with_prices
+    return context
+
 
 class StockDetailView(DetailView):
     model = Stock
     template_name = 'stocks/stock-details.html'
     context_object_name = 'stock'
-
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        api_key = os.getenv()
+        stock = context['stock']
+        stock.current_price = fetch_stock_price(stock.name.upper(), api_key)
+        return context
 
 class StockUpdateView(UpdateView):
     model = Stock
@@ -62,3 +81,15 @@ class SignInView(LoginView):
     template_name = 'registration/login.html'
     authentication_form = AuthenticationForm
     success_url = reverse_lazy("welcome")
+
+
+import requests
+import finnhub
+import os
+# this will get the current price of the stock
+def fetch_stock_price(symbol,api_key):
+    url = f'https://finnhub.io/v1/quote?symbol={symbol}&token={api_key}'
+    response = requests.get(url)
+    response.raise_for_status()
+    data = response.json()
+    return data['c']
