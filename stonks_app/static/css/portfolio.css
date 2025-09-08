@@ -1,8 +1,8 @@
 body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #e5e5f4;
     color: #1c1c1e;
-    padding: 35px;
+    padding: 0;
+    background-color: #fff;
 }
 
 .title{
@@ -10,19 +10,21 @@ body{
     font-weight: 500;
     margin-bottom: 30px;
     text-align: center;
+    padding-top: 15px;
 }
 
 .table-container{
-margin: 0 auto;
+margin: 20px auto;
 background: white;
 border-radius: 10px;
 max-width: 900px;
 box-shadow: 0 5px 10px rgba(0,0,0, 0.13);
 overflow: hidden;
+padding: 20px;
 }
 
 .ugly-table{
-    width: auto;
+    width: 100%;
     border-collapse: collapse;
     border-radius: 10px;
     overflow: hidden;
@@ -56,4 +58,10 @@ overflow: hidden;
     color: dimgrey;
     margin-top: 6.3px;
     margin-left: 8px;
+}
+
+
+body{
+        background-color: #f0f0f5;
+
 }

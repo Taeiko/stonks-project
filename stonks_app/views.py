@@ -27,7 +27,7 @@ class StockListView(ListView):
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         api_key = settings.FINNHUB_API_KEY
-        print(context['stocks'][0].total_earning)
+        
         stocks_with_prices = []
         for stock in context['stocks']:
             current_price = fetch_stock_price(stock.ticker.upper(), api_key)
@@ -45,12 +45,9 @@ class StockDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         api_key = settings.FINNHUB_API_KEY
-        
         stock = context['stock']
         
-        print('name',stock.ticker.upper())
         stock.current_price = (fetch_stock_price(stock.ticker.upper(), api_key))
-        print(stock.current_price)
         context['current_price'] = stock.current_price
         return context
 
@@ -94,15 +91,7 @@ class SignInView(LoginView):
 # this will get the current price of the stock
 def fetch_stock_price(symbol,api_key):
     url = f'https://finnhub.io/api/v1/quote?symbol={symbol}&token={api_key}'
-    print(url)
     response = requests.get(url)
-    print(response.json())
     response.raise_for_status()
     data = response.json()
-    print(data)
     return data['c']
-
-
-# # this will calculate the total profit gained from all the stocks owned using the amount of stocks owned and the current price of each stock 
-# def calculate_profit():
-    
