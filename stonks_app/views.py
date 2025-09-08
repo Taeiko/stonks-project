@@ -23,25 +23,19 @@ class StockListView(ListView):
     model = Stock
     template_name = 'stocks/stock-list.html'
     context_object_name= 'stocks'
-    
+    # shows current price in portfolio
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
+        api_key = settings.FINNHUB_API_KEY
         print(context['stocks'][0].total_earning)
+        stocks_with_prices = []
+        for stock in context['stocks']:
+            current_price = fetch_stock_price(stock.ticker.upper(), api_key)
+            stock.current_price = current_price
+            stocks_with_prices.append(stock)
+        context['stocks'] = stocks_with_prices
         return context
 
-# to show the current price of the stock 
-def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    api_key = os.getenv(settings.FINNHUB_API_KEY)
-    
-    stocks_with_prices = []
-    for stock in context['stocks']:
-        current_price = fetch_stock_price(stock.name.upper(), api_key)
-        stock.current_price = current_price
-        stocks_with_prices.append(stock)
-    
-    context['stocks'] = stocks_with_prices
-    return context
 
 class StockDetailView(DetailView):
     model = Stock
