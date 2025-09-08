@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
 import requests
-import finnhub
 import os
 
 # Create your views here.
@@ -24,7 +23,13 @@ class StockListView(ListView):
     model = Stock
     template_name = 'stocks/stock-list.html'
     context_object_name= 'stocks'
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        print(context['stocks'][0].total_earning)
+        return context
 
+# to show the current price of the stock 
 def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     api_key = os.getenv(settings.FINNHUB_API_KEY)
@@ -42,12 +47,13 @@ class StockDetailView(DetailView):
     model = Stock
     template_name = 'stocks/stock-details.html'
     context_object_name = 'stock'
-    
+    # this also shows it in the details page 
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         api_key = settings.FINNHUB_API_KEY
         
         stock = context['stock']
+        
         print('name',stock.ticker.upper())
         stock.current_price = (fetch_stock_price(stock.ticker.upper(), api_key))
         print(stock.current_price)
@@ -101,3 +107,8 @@ def fetch_stock_price(symbol,api_key):
     data = response.json()
     print(data)
     return data['c']
+
+
+# # this will calculate the total profit gained from all the stocks owned using the amount of stocks owned and the current price of each stock 
+# def calculate_profit():
+    

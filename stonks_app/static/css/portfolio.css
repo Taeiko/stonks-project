@@ -8,7 +8,7 @@ body{
 .title{
     font-size: 30px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
@@ -22,7 +22,7 @@ overflow: hidden;
 }
 
 .ugly-table{
-    width: 100%;
+    width: aut;
     border-collapse: collapse;
     border-radius: 10px;
     overflow: hidden;

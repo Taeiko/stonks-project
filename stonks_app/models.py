@@ -10,6 +10,9 @@ class Stock(models.Model):
     purchase_price = models.DecimalField(decimal_places=2, max_digits=10)
     current_price = models.DecimalField(decimal_places=2, max_digits=10)
 
+    @property
+    def total_earning(self):
+        return self.amount * self.current_price
 
 
 class User(AbstractBaseUser):
