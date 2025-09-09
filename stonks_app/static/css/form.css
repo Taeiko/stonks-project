@@ -1,0 +1,65 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form p {
+    margin: 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+form input[name="name"],
+form input[name="ticker"],
+form input[name="amount_owned"],
+form input[name="purchase_date"],
+form input[name="purchase_price"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d1d6;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #f5f5f7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+form input[name="name"]:focus,
+form input[name="ticker"]:focus,
+form input[name="amount_owned"]:focus,
+form input[name="purchase_date"]:focus,
+form input[name="purchase_price"]:focus {
+    outline: none;
+    border-color: #007aff;
+    background-color: #ffffff;
+}
+
+form button[type="submit"] {
+    background-color: #007aff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+form button[type="submit"]:hover {
+    background-color: #005ecb;
+}
+
+.form-container {
+    margin: 40px auto;
+    background: white;
+    border-radius: 10px;
+    max-width: 600px;
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.13);
+    padding: 30px;
+}

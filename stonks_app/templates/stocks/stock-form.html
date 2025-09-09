@@ -1,11 +1,19 @@
 {% extends "base.html" %}
-{% block content %}
-<h1>List a new stock</h1>
-<form method='post'>
-    {% csrf_token %}
-    {{form.as_p}}
+{% load static %}
+{% block head %}
+<link href='{%static 'css/form.css'%}' rel="stylesheet">
+{% endblock head %}
 
-    
-    <button type = 'submit'>{{form.instance.pk|yesno:"Update, Create"}}</button>
-</form>
+
+{% block content %}
+<div class="form-container">
+    <h1 class="title">List a new stock</h1>
+    <form method="post">
+    {% csrf_token %} 
+    {{form.as_p}}
+    <button type="submit" class="submit-button">
+        {{form.instance.pk|yesno:"Update, Create"}}
+        </button>
+    </form>
+</div>
 {% endblock %}
