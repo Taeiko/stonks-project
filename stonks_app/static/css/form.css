@@ -63,3 +63,9 @@ form button[type="submit"]:hover {
     box-shadow: 0 5px 10px rgba(0,0,0, 0.13);
     padding: 30px;
 }
+
+
+body{
+        background-color: #f0f0f5;
+
+}

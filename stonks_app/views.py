@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 import requests
 import os
@@ -13,11 +13,11 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 from .models import Stock
 from .forms import StockForm
 
-class StockCreateView(CreateView):
-    model = Stock
-    form_class = StockForm
-    template_name = 'stocks/stock-form.html'
-    success_url = reverse_lazy('stock_list')
+# class StockCreateView(CreateView):
+#     model = Stock
+#     form_class = StockForm
+#     template_name = 'stocks/stock-form.html'
+#     success_url = reverse_lazy('stock_list')
 
 class StockListView(ListView):
     model = Stock
@@ -35,6 +35,29 @@ class StockListView(ListView):
             stocks_with_prices.append(stock)
         context['stocks'] = stocks_with_prices
         return context
+    
+    def get_queryset(self):
+        return Stock.objects.filter(user = self.request.user)
+    
+
+from django.contrib.auth.decorators import login_required
+
+def stock_detail(request):
+    stocks = Stock.objects.all()
+    return render (request, 'stock-details.html', {'stocks': stocks})
+
+@login_required
+def stock_create(request):
+    if request.method == 'POST':
+        form = StockForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.instance.user = request.user
+            stock = form.save()
+            return redirect(reverse("stock_details", kwargs= {"pk": stock.pk}))
+    else:
+        form = StockForm()
+        return render(request, "stocks/stock-form.html", {'form': form})
+
 
 
 class StockDetailView(DetailView):
@@ -69,7 +92,7 @@ class StockdeleteView(DeleteView):
 
 
 # the stuff for login and signup and whatever 
-from .models import User
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 
