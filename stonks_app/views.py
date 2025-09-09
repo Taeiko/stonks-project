@@ -53,7 +53,7 @@ def stock_create(request):
         if form.is_valid():
             form.instance.user = request.user
             stock = form.save()
-            return redirect(reverse("stock_details", kwargs= {"pk": stock.pk}))
+            return redirect(reverse("stock_list"))
     else:
         form = StockForm()
         return render(request, "stocks/stock-form.html", {'form': form})
