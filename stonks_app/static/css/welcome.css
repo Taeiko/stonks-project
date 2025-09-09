@@ -7,19 +7,31 @@ body{
 
 .name {
   font-family: "Sedgwick Ave", cursive;
-  font-size: xx-large;
   color: #007aff;
   font-weight: 900;
-  font-size: 98px;
 }
 
 .text-center{
     padding-top: 100px;
 }
 
-.display-4{
+.welcome{
     font-weight: bold;
+    font-size: 45px;
 }
 .lead{
     font-weight: bold;
+    font-size: 50px;
+    margin-top: 90px;
+}
+.name span {
+    font-size: 140px;
+}
+
+.name h1 {
+    font-size: 120px;
+}
+
+.lead span {
+    color: #007aff;
 }
