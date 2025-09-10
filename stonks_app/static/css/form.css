@@ -46,7 +46,7 @@ form button[type="submit"] {
     width: fit-content;
 }
 
-form button[type="submit"]:hover {
+form button[type="submit"] {
     background-color: #005ecb;
 }
 

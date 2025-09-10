@@ -49,16 +49,3 @@
 
 
 
-{% comment %} just storing my working code safely here because bootstrap is annoying as shit.
-    <nav>
-        {% if user.is_authenticated %}
-        Welcome, {{user.username}} |
-            <a href="{%url 'stock_create'%}">List a stock</a>
-            <a href="{%url 'stock_list'%}">Your Stock Portfolio</a>
-            <form action="/auth/logout/" method = 'post'>
-                {% csrf_token %}
-                <button>Logout</button>
-            </form>
-        {% endif %}
-    </nav>
-    {% block content %}{% endblock content %} {% endcomment %}
