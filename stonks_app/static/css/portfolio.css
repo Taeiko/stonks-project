@@ -133,3 +133,26 @@ body{
 .total-table-cont{
     width:500px
 }
+
+.create-button{
+    background-color: #007aff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: fit-content;
+    border: 1px solid black;
+}
+
+.create-button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.create-btn {
+    display: flex;
+    justify-content: center;
+}
