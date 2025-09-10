@@ -13,29 +13,36 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 from .models import Stock
 from .forms import StockForm
 
-# class StockCreateView(CreateView):
-#     model = Stock
-#     form_class = StockForm
-#     template_name = 'stocks/stock-form.html'
-#     success_url = reverse_lazy('stock_list')
-
 class StockListView(ListView):
     model = Stock
     template_name = 'stocks/stock-list.html'
     context_object_name= 'stocks'
-    # shows current price in portfolio
+    # this function shows current price in my portfolio
     # i used a youtube tutorial to make a function that gets real time stock prices from the finnhub api.
     # youtube tutorial link: https://www.youtube.com/watch?v=Nu3bEtNrmIw
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         api_key = settings.FINNHUB_API_KEY
-        
+        # this is to help me explain this better.
+        # i made a new list that will store the updated stock info 
         stocks_with_prices = []
+        # i looped through each stock i have in my list
+        total = 0
         for stock in context['stocks']:
+            # this variable fetches the current prices using the stock's TICKER name
             current_price = fetch_stock_price(stock.ticker.upper(), api_key)
+            # and stores it in this object
             stock.current_price = current_price
+            total += (stock.current_price * stock.amount)
+            # which then gets added to the new list 
             stocks_with_prices.append(stock)
+            # ....that will replace the old list
         context['stocks'] = stocks_with_prices
+        print(total)
+        context['total'] = total
+        # new updated list is shown on the page 
+        
+        
         return context
     
     def get_queryset(self):
@@ -66,7 +73,7 @@ class StockDetailView(DetailView):
     model = Stock
     template_name = 'stocks/stock-details.html'
     context_object_name = 'stock'
-    # this also shows it in the details page 
+    # this also shows the current price in the details page 
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         api_key = settings.FINNHUB_API_KEY

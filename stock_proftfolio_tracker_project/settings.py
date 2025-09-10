@@ -127,4 +127,4 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "stock_list"       # after successful login
 
 
-LOGOUT_REDIRECT_URL = "login"     # Page where we get redirected when we log out
+LOGOUT_REDIRECT_URL = "welcome"     # Page where we get redirected when we log out

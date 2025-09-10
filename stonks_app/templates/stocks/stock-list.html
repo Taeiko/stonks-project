@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% comment %} somehow removing the base extension works. what the fuck. {% endcomment %}
+{% comment %} somehow removing the base extension works. what the heck. {% endcomment %}
 
 {%load static%}
 
@@ -35,7 +35,16 @@
             {%endfor%}
         </table>
     </div>
-</div>
+        <div class='table-container total-table-cont'>
+                    <table class='total-table'>
+                <tr>
+                    <th>Total portfolio Earnings</th>
+                </tr>
+                <tr>
+                    <td class='total'>${{total}}</td>
+                </tr>
+            </table>
+        </div>
 {% endblock %} 
 
 

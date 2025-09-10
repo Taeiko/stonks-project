@@ -43,7 +43,6 @@ padding: 5px;
 
 .ugly-table tbody, tr:hover{
     background-color: #f5f5f7;
-    transition: background-color 0.2s;
 }
 
 .ugly-table a{
@@ -68,15 +67,14 @@ body{
 
 .edit-button{
     background-color: #007aff;
-    padding: 12px 20px;
     font-size: 16px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     width: fit-content;
-    align-self: center;
-    align-items: center;
     border: 1px solid black;
+    height: 44px;
+    width: 90px;
 }
 
 .edit-button a {
@@ -95,4 +93,43 @@ body{
     width: fit-content;
     align-content: center;
     border: 1px solid black;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px
+}
+
+
+.total-table{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.total-table th{
+    background-color: #f2f2f5 ;
+}
+
+.total-table th,td {
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #e0e0e0 ;
+}
+
+.total-table tbody, tr:hover{
+    background-color: #f5f5f7;
+}
+
+.total{
+    color: #007aff;
+    font-weight: bold;
+    background-color: #fefefe;
+}
+.total-table-cont{
+    width:500px
 }

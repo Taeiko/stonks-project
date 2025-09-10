@@ -3,6 +3,7 @@ body{
     color: #1c1c1e;
     padding: 0;
     background-color: #f0f0f5;
+    align-content: center;
 }
 
 .name {
