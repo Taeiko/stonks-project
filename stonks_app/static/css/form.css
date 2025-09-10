@@ -14,11 +14,7 @@ form label {
     font-weight: 500;
 }
 
-form input[name="name"],
-form input[name="ticker"],
-form input[name="amount_owned"],
-form input[name="purchase_date"],
-form input[name="purchase_price"] {
+form input {
     width: 100%;
     padding: 12px 15px;
     border: 1px solid #d1d1d6;
@@ -30,11 +26,7 @@ form input[name="purchase_price"] {
     transition: border-color 0.2s ease;
 }
 
-form input[name="name"]:focus,
-form input[name="ticker"]:focus,
-form input[name="amount_owned"]:focus,
-form input[name="purchase_date"]:focus,
-form input[name="purchase_price"]:focus {
+form input:focus {
     outline: none;
     border-color: #007aff;
     background-color: #ffffff;
