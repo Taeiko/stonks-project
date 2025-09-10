@@ -61,3 +61,26 @@ body{
         background-color: #f0f0f5;
 
 }
+
+.title{
+    text-align: center;
+}
+
+.form-container button{
+    align-self: center;
+}
+
+.submit-signup {
+    background-color: #007aff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.submit-signup {
+    background-color: #005ecb;
+}

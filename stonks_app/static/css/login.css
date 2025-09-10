@@ -40,21 +40,19 @@ button:hover {
     opacity: 0.8;
 }
 
-img {
-    width: 40%;
-    border-radius: 50%;
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
 
 .login-button{
-    display: flex;
-    margin-left: 15%;
-    width: 200px;
-    height:50px  ;
-    border-radius: 5px;
-    align-content: center;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    background-color: #007aff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: fit-content;
+    align-self: center;
+}
+
+.login-button {
+    background-color: #005ecb;
 }

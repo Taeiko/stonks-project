@@ -25,9 +25,10 @@
             </tr>
         </table>
     </div>
-<a href="{%url 'stock_update' stock.pk%}">Edit </a> |
+    <button class='edit-button'><a href="{%url 'stock_update' stock.pk%}">Edit </a></button>
+
 <form action="{%url 'stock_delete' stock.pk%}" method='post'>
     {%csrf_token%}
-    <button>Delete</button>
+    <button class='delete-button'>Delete</button>
 </form>
 {% endblock  %}

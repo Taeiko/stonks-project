@@ -24,6 +24,8 @@ class StockListView(ListView):
     template_name = 'stocks/stock-list.html'
     context_object_name= 'stocks'
     # shows current price in portfolio
+    # i used a youtube tutorial to make a function that gets real time stock prices from the finnhub api.
+    # youtube tutorial link: https://www.youtube.com/watch?v=Nu3bEtNrmIw
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         api_key = settings.FINNHUB_API_KEY
@@ -59,7 +61,7 @@ def stock_create(request):
         return render(request, "stocks/stock-form.html", {'form': form})
 
 
-
+# i used the same function and tutorial i mentioned above to do the same thing here as well.
 class StockDetailView(DetailView):
     model = Stock
     template_name = 'stocks/stock-details.html'
